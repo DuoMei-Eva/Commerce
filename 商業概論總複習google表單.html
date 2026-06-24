@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <title>商業概論總複習題庫Google表單</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
@@ -227,7 +230,7 @@
         // 建立 GitHub REST API 目錄請求網址
         const apiUrl = `https://api.github.com/repos/${repoInfo.owner}/${repoInfo.repo}/contents/`;
 
-        fetch(apiUrl)
+        fetch(apiUrl, { cache: 'no-store' })
             .then(response => {
                 if (!response.ok) {
                     throw new Error('無法取得 GitHub 目錄資料，請確認專案是否為公開儲存庫。');
@@ -285,7 +288,7 @@
     function fetchFileData(fileName) {
         linksContainer.innerHTML = '<div class="message">載入中...</div>';
         
-        fetch(fileName)
+        fetch(fileName, { cache: 'no-store' })
             .then(response => {
                 if (!response.ok) {
                     throw new Error('無法讀取檔案內容。');

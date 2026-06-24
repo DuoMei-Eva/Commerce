@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <title>商業概論總複習題庫Google表單</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
@@ -133,7 +136,7 @@
     async function init() {
         try {
             const apiUrl = `https://api.github.com/repos/${CONFIG.username}/${CONFIG.repo}/contents/${CONFIG.folder}`;
-            const response = await fetch(apiUrl);
+            const response = await fetch(apiUrl, { cache: 'no-store' });
             const files = await response.json();
 
             if (!Array.isArray(files)) throw new Error('無法讀取資料');
@@ -173,7 +176,7 @@
             isExternal = true;
             try {
                 // 抓取 .url 檔案內容
-                const res = await fetch(file.download_url);
+                const res = await fetch(file.download_url, { cache: 'no-store' });
                 const text = await res.text();
                 // 用正規表達式找 URL= 後面的網址
                 const match = text.match(/URL=(.+)/i);
